@@ -1,4 +1,6 @@
-class omnivore extends LivingCreature {
+let LivingCreature = require("LivingCreature.js")
+
+module.exports = class omnivore extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;

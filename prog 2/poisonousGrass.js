@@ -1,4 +1,6 @@
-class poisonousGrass extends LivingCreature{
+let LivingCreature = require("LivingCreature.js")
+
+module.exports = class poisonousGrass extends LivingCreature{
     mul() {
         this.multiply++;
         let emptyCells = this.chooseCell(0);
