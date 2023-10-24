@@ -1,9 +1,9 @@
-let Grass = require("grass.js")
-let GrassEater = require("grassEater.js")
-let grassEaterEater = require("grassEaterEater.js")
-let human = require("human.js")
-let omnivore = require("omnivore.js")
-let poisonousGrass = require("poisonousGrass.js")
+let Grass = require("./grass.js")
+let GrassEater = require("./grassEater.js")
+let grassEaterEater = require("./grassEaterEater.js")
+let human = require("./human.js")
+let omnivore = require("./omnivore.js")
+let poisonousGrass = require("./poisonousGrass.js")
 
 const matrix = [];
 const n = 50;

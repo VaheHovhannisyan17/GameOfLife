@@ -1,4 +1,5 @@
-let LivingCreature = require("LivingCreature.js")
+let LivingCreature = require("./LivingCreature.js")
+let random = require("./random");
 
 module.exports = class poisonousGrass extends LivingCreature{
     mul() {
