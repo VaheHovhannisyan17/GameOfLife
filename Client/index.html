@@ -9,10 +9,21 @@
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
         <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-        <script src = "client.js"></script>
         <button onclick = "winter()" id = "winter">Winter</button>
         <button onclick = "spring()" id = "spring">Spring</button>
         <button onclick = "summer()" id = "summer">Summer</button>
         <button onclick = "autumn()" id = "autumn">Autumn</button>
+        <br> <br>
+        <button onclick = "getStatistics()" id = "autumn">Get Statistics</button>
+        <br> <br>
+        <h3>Grass: <h3 id="grassCount">0</h3></h3> <br>
+        <h3>Grass Eater: <h3 id="grassEaterCount">0</h3></h3> <br>
+        <h3>Omnivore: </h3><h3 id="omnivoreCount">0</h3></h3> <br>
+        <h3>Poisonous Grass: <h3 id="poisonousGrassCount">0</h3></h3> <br>
+        <h3>Human: <h3 id="humanCount">0</h3></h3> <br>
+        <script src = "client.js"></script> 
+        <style>
+            h3{display: inline;}
+        </style>
     </body>
 </html>

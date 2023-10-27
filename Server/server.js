@@ -3,6 +3,7 @@ var app = express();
 
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var fs = require('fs')
 
 app.use(express.static("../Client"));
 
@@ -16,16 +17,29 @@ server.listen(3000, function(){
 
 io.on('connection', function (socket) {
     socket.emit("esim", matrix)
-    socket.on("winter", rate)
-    socket.on("spring", rate)
-    socket.on("summer", rate)
-    socket.on("autumn", rate)
+    socket.on("winter", changeRate)
+    socket.on("spring", changeRate)
+    socket.on("summer", changeRate)
+    socket.on("autumn", changeRate)
+    socket.on("getStatistics", getStatisticsSignal)
 });
 
-
-
-function rate(rate){
+function changeRate(rate){
     frameRate = rate
+    console.log(frameRate)
+    clearInterval(id)
+    id = setInterval(start, frameRate)
+}
+
+function getStatisticsSignal(esimAnushHayastaniArevahamBarnEmSirum){
+    console.log(256864928)
+    id = setInterval(sendStatistics, 2000)
+}
+
+function sendStatistics(){
+    let info = fs.readFileSync("statistics.json").toString()
+    io.sockets.emit("sentStatistics", info)
+    console.log(2)
 }
 
 let Grass = require("./grass.js")
@@ -147,10 +161,28 @@ function start(){
     }
 
     io.sockets.emit("esim", matrix)
+
+    let statisticsObj = {
+        grassCount: grassArr.length,
+        grassEaterCount: grassEaterArr.length,
+        omnivoreCount: omnivoreArr.length,
+        poisonousGrassCount: poisonousGrassArr.length,
+        humanCount: humanArr.length
+    }
+
+    let myJSON = JSON.stringify(statisticsObj);
+    fs.writeFileSync("statistics.json", myJSON)
+
+    console.log(1)
 }
 
 matrixEditor()
 createObj()
-setInterval(start, frameRate)
+var id
+id = setInterval(start, frameRate)
 
-console.log(matrix)
+// setInterval(checkFrameRate, 100)
+
+
+
+console.log(frameRate)
