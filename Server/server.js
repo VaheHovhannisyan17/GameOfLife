@@ -22,24 +22,221 @@ io.on('connection', function (socket) {
     socket.on("summer", changeRate)
     socket.on("autumn", changeRate)
     socket.on("getStatistics", getStatisticsSignal)
+    socket.on("boomBoom", activateBomb)
 });
+
+function activateBomb(arevahamBarnEmSirum){
+    let a = Math.floor(random(n - 4) + 2);
+    let b = Math.floor(random(m - 4) + 2);
+    matrix[b][a] = 6;
+    matrix[b - 1][a - 1] = 6;
+    matrix[b - 1][a] = 6;
+    matrix[b - 1][a + 1] = 6;
+    matrix[b][a - 1] = 6;
+    matrix[b][a + 1] = 6;
+    matrix[b + 1][a - 1] = 6;
+    matrix[b + 1][a] = 6;
+    matrix[b + 1][a + 1] = 6;
+    matrix[b - 2][a - 2] = 7;
+    matrix[b - 2][a - 1] = 7;
+    matrix[b - 2][a] = 7;
+    matrix[b - 2][a + 1] = 7;
+    matrix[b - 2][a + 2] = 7;
+    matrix[b + 2][a - 2] = 7;
+    matrix[b + 2][a - 1] = 7;
+    matrix[b + 2][a] = 7;
+    matrix[b + 2][a + 1] = 7;
+    matrix[b + 2][a + 2] = 7;
+    matrix[b - 1][a + 2] = 7;
+    matrix[b - 1][a - 2] = 7;
+    matrix[b][a - 2] = 7;
+    matrix[b][a + 2] = 7;
+    matrix[b + 1][a - 2] = 7;
+    matrix[b + 1][a + 2] = 7;
+    setTimeout(backToZero, 500)
+    function backToZero(){
+        matrix[b][a] = 0;
+        matrix[b - 1][a - 1] = 0;
+        matrix[b - 1][a] = 0;
+        matrix[b - 1][a + 1] = 0;
+        matrix[b][a - 1] = 0;
+        matrix[b][a + 1] = 0;
+        matrix[b + 1][a - 1] = 0;
+        matrix[b + 1][a] = 0;
+        matrix[b + 1][a + 1] = 0;
+        matrix[b - 2][a - 2] = 0;
+        matrix[b - 2][a - 1] = 0;
+        matrix[b - 2][a] = 0;
+        matrix[b - 2][a + 1] = 0;
+        matrix[b - 2][a + 2] = 0;
+        matrix[b + 2][a - 2] = 0;
+        matrix[b + 2][a - 1] = 0;
+        matrix[b + 2][a] = 0;
+        matrix[b + 2][a + 1] = 0;
+        matrix[b + 2][a + 2] = 0;
+        matrix[b - 1][a + 2] = 0;
+        matrix[b - 1][a - 2] = 0;
+        matrix[b][a - 2] = 0;
+        matrix[b][a + 2] = 0;
+        matrix[b + 1][a - 2] = 0;
+        matrix[b + 1][a + 2] = 0;
+    }
+    for (let i in grassArr) {
+        if ((a == grassArr[i].x && b == grassArr[i].y) || 
+            (a - 1 == grassArr[i].x && b - 1 == grassArr[i].y) || 
+            (a - 1 == grassArr[i].x && b == grassArr[i].y) || 
+            (a - 1 == grassArr[i].x && b + 1 == grassArr[i].y) || 
+            (a == grassArr[i].x && b - 1 == grassArr[i].y) || 
+            (a == grassArr[i].x && b + 1 == grassArr[i].y) || 
+            (a + 1 == grassArr[i].x && b - 1 == grassArr[i].y) || 
+            (a + 1 == grassArr[i].x && b == grassArr[i].y) || 
+            (a + 1 == grassArr[i].x && b + 1 == grassArr[i].y) ||
+            (a - 2 == grassArr[i].x && b - 2 == grassArr[i].y) || 
+            (a - 2 == grassArr[i].x && b - 1 == grassArr[i].y) || 
+            (a - 2 == grassArr[i].x && b == grassArr[i].y) || 
+            (a - 2 == grassArr[i].x && b + 1 == grassArr[i].y) || 
+            (a - 2 == grassArr[i].x && b + 2 == grassArr[i].y) || 
+            (a - 1 == grassArr[i].x && b - 2 == grassArr[i].y) || 
+            (a - 1 == grassArr[i].x && b + 2 == grassArr[i].y) || 
+            (a == grassArr[i].x && b - 2 == grassArr[i].y) || 
+            (a == grassArr[i].x && b + 2 == grassArr[i].y) ||
+            (a + 1 == grassArr[i].x && b - 2 == grassArr[i].y) || 
+            (a + 1 == grassArr[i].x && b + 2 == grassArr[i].y) || 
+            (a + 2 == grassArr[i].x && b - 2 == grassArr[i].y) || 
+            (a + 2 == grassArr[i].x && b - 1 == grassArr[i].y) || 
+            (a + 2 == grassArr[i].x && b == grassArr[i].y) || 
+            (a + 2 == grassArr[i].x && b + 1 == grassArr[i].y) || 
+            (a + 2 == grassArr[i].x && b + 2 == grassArr[i].y)) {
+            grassArr.splice(i, 1);
+        }
+    }
+    for (let i in grassEaterArr) {
+        if ((a == grassEaterArr[i].x && b == grassEaterArr[i].y) || 
+            (a - 1 == grassEaterArr[i].x && b - 1 == grassEaterArr[i].y) || 
+            (a - 1 == grassEaterArr[i].x && b == grassEaterArr[i].y) || 
+            (a - 1 == grassEaterArr[i].x && b + 1 == grassEaterArr[i].y) || 
+            (a == grassEaterArr[i].x && b - 1 == grassEaterArr[i].y) || 
+            (a == grassEaterArr[i].x && b + 1 == grassEaterArr[i].y) || 
+            (a + 1 == grassEaterArr[i].x && b - 1 == grassEaterArr[i].y) || 
+            (a + 1 == grassEaterArr[i].x && b == grassEaterArr[i].y) || 
+            (a + 1 == grassEaterArr[i].x && b + 1 == grassEaterArr[i].y) ||
+            (a - 2 == grassEaterArr[i].x && b - 2 == grassEaterArr[i].y) || 
+            (a - 2 == grassEaterArr[i].x && b - 1 == grassEaterArr[i].y) || 
+            (a - 2 == grassEaterArr[i].x && b == grassEaterArr[i].y) || 
+            (a - 2 == grassEaterArr[i].x && b + 1 == grassEaterArr[i].y) || 
+            (a - 2 == grassEaterArr[i].x && b + 2 == grassEaterArr[i].y) || 
+            (a - 1 == grassEaterArr[i].x && b - 2 == grassEaterArr[i].y) || 
+            (a - 1 == grassEaterArr[i].x && b + 2 == grassEaterArr[i].y) || 
+            (a == grassEaterArr[i].x && b - 2 == grassEaterArr[i].y) || 
+            (a == grassEaterArr[i].x && b + 2 == grassEaterArr[i].y) ||
+            (a + 1 == grassEaterArr[i].x && b - 2 == grassEaterArr[i].y) || 
+            (a + 1 == grassEaterArr[i].x && b + 2 == grassEaterArr[i].y) || 
+            (a + 2 == grassEaterArr[i].x && b - 2 == grassEaterArr[i].y) || 
+            (a + 2 == grassEaterArr[i].x && b - 1 == grassEaterArr[i].y) || 
+            (a + 2 == grassEaterArr[i].x && b == grassEaterArr[i].y) || 
+            (a + 2 == grassEaterArr[i].x && b + 1 == grassEaterArr[i].y) || 
+            (a + 2 == grassEaterArr[i].x && b + 2 == grassEaterArr[i].y)) {
+            grassEaterArr.splice(i, 1);
+        }
+    }
+    for (let i in omnivoreArr) {
+        if ((a == omnivoreArr[i].x && b == omnivoreArr[i].y) || 
+            (a - 1 == omnivoreArr[i].x && b - 1 == omnivoreArr[i].y) || 
+            (a - 1 == omnivoreArr[i].x && b == omnivoreArr[i].y) || 
+            (a - 1 == omnivoreArr[i].x && b + 1 == omnivoreArr[i].y) || 
+            (a == omnivoreArr[i].x && b - 1 == omnivoreArr[i].y) || 
+            (a == omnivoreArr[i].x && b + 1 == omnivoreArr[i].y) || 
+            (a + 1 == omnivoreArr[i].x && b - 1 == omnivoreArr[i].y) || 
+            (a + 1 == omnivoreArr[i].x && b == omnivoreArr[i].y) || 
+            (a + 1 == omnivoreArr[i].x && b + 1 == omnivoreArr[i].y) ||
+            (a - 2 == omnivoreArr[i].x && b - 2 == omnivoreArr[i].y) || 
+            (a - 2 == omnivoreArr[i].x && b - 1 == omnivoreArr[i].y) || 
+            (a - 2 == omnivoreArr[i].x && b == omnivoreArr[i].y) || 
+            (a - 2 == omnivoreArr[i].x && b + 1 == omnivoreArr[i].y) || 
+            (a - 2 == omnivoreArr[i].x && b + 2 == omnivoreArr[i].y) || 
+            (a - 1 == omnivoreArr[i].x && b - 2 == omnivoreArr[i].y) || 
+            (a - 1 == omnivoreArr[i].x && b + 2 == omnivoreArr[i].y) || 
+            (a == omnivoreArr[i].x && b - 2 == omnivoreArr[i].y) || 
+            (a == omnivoreArr[i].x && b + 2 == omnivoreArr[i].y) ||
+            (a + 1 == omnivoreArr[i].x && b - 2 == omnivoreArr[i].y) || 
+            (a + 1 == omnivoreArr[i].x && b + 2 == omnivoreArr[i].y) || 
+            (a + 2 == omnivoreArr[i].x && b - 2 == omnivoreArr[i].y) || 
+            (a + 2 == omnivoreArr[i].x && b - 1 == omnivoreArr[i].y) || 
+            (a + 2 == omnivoreArr[i].x && b == omnivoreArr[i].y) || 
+            (a + 2 == omnivoreArr[i].x && b + 1 == omnivoreArr[i].y) || 
+            (a + 2 == omnivoreArr[i].x && b + 2 == omnivoreArr[i].y)) {
+            omnivoreArr.splice(i, 1);
+        }
+    }
+    for (let i in poisonousGrassArr) {
+        if ((a == poisonousGrassArr[i].x && b == poisonousGrassArr[i].y) || 
+            (a - 1 == poisonousGrassArr[i].x && b - 1 == poisonousGrassArr[i].y) || 
+            (a - 1 == poisonousGrassArr[i].x && b == poisonousGrassArr[i].y) || 
+            (a - 1 == poisonousGrassArr[i].x && b + 1 == poisonousGrassArr[i].y) || 
+            (a == poisonousGrassArr[i].x && b - 1 == poisonousGrassArr[i].y) || 
+            (a == poisonousGrassArr[i].x && b + 1 == poisonousGrassArr[i].y) || 
+            (a + 1 == poisonousGrassArr[i].x && b - 1 == poisonousGrassArr[i].y) || 
+            (a + 1 == poisonousGrassArr[i].x && b == poisonousGrassArr[i].y) || 
+            (a + 1 == poisonousGrassArr[i].x && b + 1 == poisonousGrassArr[i].y) ||
+            (a - 2 == poisonousGrassArr[i].x && b - 2 == poisonousGrassArr[i].y) || 
+            (a - 2 == poisonousGrassArr[i].x && b - 1 == poisonousGrassArr[i].y) || 
+            (a - 2 == poisonousGrassArr[i].x && b == poisonousGrassArr[i].y) || 
+            (a - 2 == poisonousGrassArr[i].x && b + 1 == poisonousGrassArr[i].y) || 
+            (a - 2 == poisonousGrassArr[i].x && b + 2 == poisonousGrassArr[i].y) || 
+            (a - 1 == poisonousGrassArr[i].x && b - 2 == poisonousGrassArr[i].y) || 
+            (a - 1 == poisonousGrassArr[i].x && b + 2 == poisonousGrassArr[i].y) || 
+            (a == poisonousGrassArr[i].x && b - 2 == poisonousGrassArr[i].y) || 
+            (a == poisonousGrassArr[i].x && b + 2 == poisonousGrassArr[i].y) ||
+            (a + 1 == poisonousGrassArr[i].x && b - 2 == poisonousGrassArr[i].y) || 
+            (a + 1 == poisonousGrassArr[i].x && b + 2 == poisonousGrassArr[i].y) || 
+            (a + 2 == poisonousGrassArr[i].x && b - 2 == poisonousGrassArr[i].y) || 
+            (a + 2 == poisonousGrassArr[i].x && b - 1 == poisonousGrassArr[i].y) || 
+            (a + 2 == poisonousGrassArr[i].x && b == poisonousGrassArr[i].y) || 
+            (a + 2 == poisonousGrassArr[i].x && b + 1 == poisonousGrassArr[i].y) || 
+            (a + 2 == poisonousGrassArr[i].x && b + 2 == poisonousGrassArr[i].y)) {
+            poisonousGrassArr.splice(i, 1);
+        }
+    }
+    for (let i in humanArr) {
+        if ((a == humanArr[i].x && b == humanArr[i].y) || 
+            (a - 1 == humanArr[i].x && b - 1 == humanArr[i].y) || 
+            (a - 1 == humanArr[i].x && b == humanArr[i].y) || 
+            (a - 1 == humanArr[i].x && b + 1 == humanArr[i].y) || 
+            (a == humanArr[i].x && b - 1 == humanArr[i].y) || 
+            (a == humanArr[i].x && b + 1 == humanArr[i].y) || 
+            (a + 1 == humanArr[i].x && b - 1 == humanArr[i].y) || 
+            (a + 1 == humanArr[i].x && b == humanArr[i].y) || 
+            (a + 1 == humanArr[i].x && b + 1 == humanArr[i].y) ||
+            (a - 2 == humanArr[i].x && b - 2 == humanArr[i].y) || 
+            (a - 2 == humanArr[i].x && b - 1 == humanArr[i].y) || 
+            (a - 2 == humanArr[i].x && b == humanArr[i].y) || 
+            (a - 2 == humanArr[i].x && b + 1 == humanArr[i].y) || 
+            (a - 2 == humanArr[i].x && b + 2 == humanArr[i].y) || 
+            (a - 1 == humanArr[i].x && b - 2 == humanArr[i].y) || 
+            (a - 1 == humanArr[i].x && b + 2 == humanArr[i].y) || 
+            (a == humanArr[i].x && b - 2 == humanArr[i].y) || 
+            (a == humanArr[i].x && b + 2 == humanArr[i].y) ||
+            (a + 1 == humanArr[i].x && b - 2 == humanArr[i].y) || 
+            (a + 1 == humanArr[i].x && b + 2 == humanArr[i].y) || 
+            (a + 2 == humanArr[i].x && b - 2 == humanArr[i].y) || 
+            (a + 2 == humanArr[i].x && b - 1 == humanArr[i].y) || 
+            (a + 2 == humanArr[i].x && b == humanArr[i].y) || 
+            (a + 2 == humanArr[i].x && b + 1 == humanArr[i].y) || 
+            (a + 2 == humanArr[i].x && b + 2 == humanArr[i].y)) {
+            humanArr.splice(i, 1);
+        }
+    }
+}
 
 function changeRate(rate){
     frameRate = rate
-    console.log(frameRate)
     clearInterval(id)
     id = setInterval(start, frameRate)
 }
 
 function getStatisticsSignal(esimAnushHayastaniArevahamBarnEmSirum){
-    console.log(256864928)
-    id = setInterval(sendStatistics, 2000)
-}
-
-function sendStatistics(){
     let info = fs.readFileSync("statistics.json").toString()
     io.sockets.emit("sentStatistics", info)
-    console.log(2)
 }
 
 let Grass = require("./grass.js")
@@ -172,17 +369,10 @@ function start(){
 
     let myJSON = JSON.stringify(statisticsObj);
     fs.writeFileSync("statistics.json", myJSON)
-
-    console.log(1)
 }
 
 matrixEditor()
 createObj()
+
 var id
 id = setInterval(start, frameRate)
-
-// setInterval(checkFrameRate, 100)
-
-
-
-console.log(frameRate)

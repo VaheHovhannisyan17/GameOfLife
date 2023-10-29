@@ -3,13 +3,20 @@ var grassEaterCountObj = document.getElementById("grassEaterCount")
 var omnivoreCountObj = document.getElementById("omnivoreCount")
 var poisonousGrassCountObj = document.getElementById("poisonousGrassCount")
 var humanCountObj = document.getElementById("humanCount")
+var seasonNameObj = document.getElementById("seasonName")
 let grassColor = "green"
 let grassEaterColor = "yellow"
 let omnivoreColor = "orange"
 var socket = io();
+let boomBoomX
+let boomBoomY
 
 function getStatistics(){
     socket.emit("getStatistics", "esim")
+}
+
+function boomBoom(){
+    socket.emit("boomBoom", "esimAnushHayastani")
 }
 
 socket.on("sentStatistics", changeStatistics)
@@ -24,32 +31,36 @@ function changeStatistics(info){
 }
 
 function winter(){
+    seasonNameObj.innerHTML = 'Winter'
     grassColor = "white"
     grassEaterColor = "#ffffaa"
     omnivoreColor = "#ffdd99"
 
-    socket.emit("winter", 5000)
+    socket.emit("winter", 500)
 }
 function spring(){
+    seasonNameObj.innerHTML = 'Spring'
     grassColor = "green"
     grassEaterColor = "yellow"
     omnivoreColor = "orange"
 
-    socket.emit("spring", 1000)
+    socket.emit("spring", 100)
 }
 function summer(){
+    seasonNameObj.innerHTML = 'Summer'
     grassColor = "green"
     grassEaterColor = "yellow"
     omnivoreColor = "orange"
 
-    socket.emit("summer", 1500)
+    socket.emit("summer", 150)
 }
 function autumn(){
+    seasonNameObj.innerHTML = 'Autumn'
     grassColor = "#888822"
     grassEaterColor = "yellow"
     omnivoreColor = "orange"
 
-    socket.emit("autumn", 3000)
+    socket.emit("autumn", 300)
 }
 
 
@@ -67,6 +78,12 @@ function setup(){
 function myDraw(matrix) {
     for (var y = 0; y < m; y++) {
         for (var x = 0; x < n; x++) {
+            if (matrix[y][x] == 7) {
+                fill("red");
+            }
+            if (matrix[y][x] == 6) {
+                fill("orange");
+            }
             if (matrix[y][x] == 5) {
                 fill("black");
             }
